@@ -25,3 +25,4 @@ REM Clear-RecycleBin -Force -ErrorAction SilentlyContinue
 REM function for this here https://github.com/I-Am-Jakoby/PowerShell-for-Hackers/blob/main/Functions/Clean-Exfil.md
 Enter
 Delay 500
+ 
